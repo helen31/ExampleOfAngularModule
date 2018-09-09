@@ -1,0 +1,172 @@
+<app-subheader-corp></app-subheader-corp>
+<div  fxLayoutAlign="center" class="container">
+  <div
+    class="container-stepper"
+    fxLayout="column"
+    fxFlex="50%"
+    fxFlex.md="80%"
+    fxFlex.lt-md="100%">
+    <mat-card>
+      <mat-card-title i18n>Створення корпорації</mat-card-title>
+      <mat-vertical-stepper linear>
+        <ng-template matStepperIcon="edit">
+          <mat-icon svgIcon="edit"></mat-icon>
+        </ng-template>
+        <mat-step [stepControl]="firstFormGroup"><!--editable="false"-->
+          <form
+            [formGroup]="firstFormGroup"
+            (ngSubmit)="getCorpMorionHandler()"
+            #firstFormGroupDirective="ngForm">
+            <ng-template
+              i18n
+              matStepLabel>
+              Дані Моріон
+            </ng-template>
+            <mat-spinner
+              *ngIf="activeSpinner"
+              color="accent"
+              diameter="60"
+              strokeWidth="7">
+            </mat-spinner>
+            <div *ngIf="!activeSpinner">
+              <div *ngIf="!isCorpMirionResponse">
+                <div class="wrapper">
+                  <mat-form-field class="mat-form-field-width">
+                    <input matInput placeholder="ID Моріон*" formControlName="id" type="number">
+                    <mat-error
+                      i18n
+                      *ngIf="firstFormGroup.controls.id.touched || firstFormGroup.controls.id.invalid">
+                      Поле обов'язкове
+                    </mat-error>
+                  </mat-form-field>
+                  <app-delete-input-value [inputValue]="firstFormGroup.controls.id" class="delete-input-lsKey"></app-delete-input-value>
+                </div>
+                <p
+                  i18n
+                  *ngIf="isIdMorionError"
+                  class="ls-error">
+                  ID відсутній у базі!
+                </p>
+                <div *ngIf="!isHiddenInputField">
+                  <input matInput placeholder="" formControlName="isResponse" type="text">
+                </div>
+                <div class="button-wrapper">
+                  <button
+                    class="btn-cancel"
+                    i18n
+                    mat-raised-button
+                    type="button"
+                    (click)="resetFirstFormGroupHandler()">
+                    Відмінити
+                  </button>
+                  <button
+                    i18n
+                    [disabled]="firstFormGroup.get('id').errors?.required"
+                    mat-raised-button
+                    color="primary"
+                    class="button-find"
+                    type="submit">
+                    Знайти
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isCorpMirionResponse">
+              <div
+                class="item-description">
+                <span i18n>ID Моріон:</span>{{ corpMorion.id }}
+                <a
+                  i18n
+                  href="javascript:void(0);"
+                  class="link-edit"
+                  (click)="editCorpMorionHandler()">
+                  редагувати
+                </a>
+              </div>
+              <div class="item-description">
+                <span i18n>Нава Моріон:</span>{{ corpMorion.name }}</div>
+              <button
+                class="btn-cancel"
+                i18n
+                mat-raised-button
+                type="button"
+                (click)="resetFirstFormGroupHandler()">
+                Відмінити
+              </button>
+              <button
+                i18n
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                type="button"
+                [disabled]="firstFormGroup.invalid && !isCorpMirionResponse"
+                class="button-next">
+                Далі
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <ng-template
+            i18n
+            matStepLabel>
+            Дані корпорації
+          </ng-template>
+          <form [formGroup]="secondFormGroup"  #secondFormGroupDirective="ngForm" (ngSubmit)="submitCorpHandler()" class="form-second">
+            <ng-template
+              i18n
+              matStepLabel>
+              Вибір або створення корпорації
+            </ng-template>
+            <div class="wrapper">
+              <mat-form-field class="mat-form-field-width">
+                <input
+                  i18n-placeholder
+                  matInput
+                  placeholder="Назва копрорації*"
+                  formControlName="corpName">
+                <mat-error
+                  i18n
+                  *ngIf="!secondFormGroup.controls['corpName'].hasError('maxlength') && secondFormGroup.controls.corpName.touched && secondFormGroup.get('corpName').errors?.required">
+                  Поле обов'язкове
+                </mat-error>
+                <mat-error
+                  i18n
+                  *ngIf="secondFormGroup.controls['corpName'].hasError('maxlength')">
+                  Перевищена максимальна довжина
+                </mat-error>
+              </mat-form-field>
+              <app-delete-input-value [inputValue]="secondFormGroup.controls.corpName"></app-delete-input-value>
+            </div>
+            <div class="button-wrapper">
+              <button
+                i18n
+                mat-raised-button
+                class="btn-cancel"
+                type="button"
+                (click)="resetSecondFormGroupHandler()">
+                Відмінити
+              </button>
+              <button
+                i18n
+                mat-raised-button
+                matStepperPrevious
+                class="btn-cancel button-prev"
+                type="button">
+                Назад
+              </button>
+              <button
+                i18n
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="!secondFormGroup.valid">
+                Створити
+              </button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-vertical-stepper>
+    </mat-card>
+  </div>
+</div>

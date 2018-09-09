@@ -1,0 +1,27 @@
+<div i18n mat-dialog-title>Bидалити структуру</div>
+<mat-dialog-content>
+  <div class="item-description">
+    <span i18n>ID:</span>{{ pharmacy.id_org }}
+  </div>
+  <div class="item-description">
+    <span i18n>Назва:</span>{{ pharmacy.org_name }}
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    class="btn-cancel"
+    i18n
+    mat-raised-button
+    mat-dialog-close
+    type="button">
+    Відмінити
+  </button>
+  <button
+    i18n
+    mat-raised-button
+    class="btn-delete"
+    type="button"
+    (click)="deletePharmacyHandler()">
+    Видалити
+  </button>
+</mat-dialog-actions>

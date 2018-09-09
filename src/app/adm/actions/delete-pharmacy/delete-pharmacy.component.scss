@@ -1,0 +1,18 @@
+@import '~sass/variables';
+
+button{
+  text-transform: uppercase;
+}
+.item-description{
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.item-description span{
+  color: #636363;
+  padding-right: 8px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.mat-dialog-actions{
+  justify-content: flex-end;
+}

@@ -1,0 +1,47 @@
+@import '~sass/variables';
+
+.container{
+  padding-top: 80px;
+}
+.title{
+  text-align: center;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 19px 0 34px 0;
+}
+.table-container{
+  max-height: 600px;
+  overflow: auto;
+}
+.mat-table{
+  width: 100%;
+}
+.active{
+  background-color: $primary-color-opacity!important;
+  box-shadow: 0 0 0 1px $secondary-color inset;
+}
+.button-wrapper{
+  margin-top: 60px;
+}
+.button-action{
+  min-width: 160px;
+  margin: 0 6px;
+}
+.mat-row:nth-child(even){
+  background-color: $table-row-color;
+}
+.mat-icon-button, .mat-icon{
+  line-height: 20px;
+}
+.mat-icon{
+  height: 20px;
+  width: 20px;
+}
+th.mat-header-cell:first-child {
+  padding-left: 7px;
+}
+.characters:before{
+  font-size: 18px;
+  content: "/";
+  vertical-align: middle;
+}

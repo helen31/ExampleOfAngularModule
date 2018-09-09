@@ -1,0 +1,77 @@
+@import '~sass/variables';
+
+.table-container{
+  width: 100%;
+  position: relative;
+}
+/**.table-container-elem{
+  padding-top: 28px;
+}**/
+.mat-table{
+  padding-top: 118px;
+  width: 100%;
+}
+.mat-header-row{
+  //border-top: 2px solid $table-border-color;
+  //border-bottom: 2px solid $table-border-color;
+  background: #fff;
+  width: 100%;
+}
+/**.mat-row:nth-child(even){
+  background-color: $table-row-color;
+}**/
+.cell-pharmacy:nth-child(1),
+.cell-pharmacy-header:nth-child(1)
+{
+  //flex: 0 0 3%;
+  width: 3%;
+}
+.cell-pharmacy:nth-child(2),
+.cell-pharmacy-header:nth-child(2)
+{
+  width: 5%;
+  //flex: 0 0 5%;
+}
+.cell-pharmacy:nth-child(4),
+.cell-pharmacy-header:nth-child(4)
+{
+  width: 6%;
+  //flex: 0 0 6%;
+}
+.cell-pharmacy:nth-child(6),
+.cell-pharmacy-header:nth-child(6)
+{
+  width: 15%;
+  //flex: 0 0 15%;
+}
+.row-customers{
+  background-color: $table-row-color;
+}
+.mat-header-cell {
+  font-weight: bold;
+  height: inherit;
+}
+.cell-customers{
+  flex: 0 0 100%;
+}
+.isShown{
+  display: none;
+}
+.active-customer-list{
+  color: $secondary-color;
+}
+.active{
+  background-color: $primary-color-opacity!important;
+  box-shadow: 0 0 0 1px $secondary-color inset;
+}
+.activeCustomerRow{
+  box-shadow: 0px 0 1px 1px $vault-background-color inset;
+}
+.customers-list li span{
+  margin-right: 7px;
+}
+/**SPINNER**/
+.mat-progress-bar{
+  position: fixed;
+  top: 176px;
+}

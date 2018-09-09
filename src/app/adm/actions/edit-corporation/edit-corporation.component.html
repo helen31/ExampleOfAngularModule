@@ -1,0 +1,65 @@
+<app-subheader-corp></app-subheader-corp>
+<div  fxLayoutAlign="center" class="container">
+  <div
+    class="container-edit"
+    fxLayout="column"
+    fxFlex="50%"
+    fxFlex.md="80%"
+    fxFlex.lt-md="100%">
+    <mat-card>
+      <form [formGroup]="editCorpFormGroup" (ngSubmit)="editCorporationHandler()">
+        <mat-card-title i18n>Редагування корпорації</mat-card-title>
+        <mat-card-content>
+        <div class="description">
+          <div class="item-description">
+            <span i18n>ID Моріон:</span>{{ corporation.id_morion }}
+          </div>
+          <div class="item-description">
+            <span i18n>Назва Моріон:</span>{{ corporation.morion_name }}
+          </div>
+          <div class="item-description">
+            <span i18n>ID:</span>{{ corporation.id_corp }}
+          </div>
+        </div>
+        <div class="mat-form-field-container">
+          <mat-form-field>
+            <input
+              i18n-placeholder
+              matInput
+              placeholder="Назва*"
+              formControlName="corpName"
+              type="text">
+            <mat-error
+              i18n
+              *ngIf="!editCorpFormGroup.controls['corpName'].hasError('maxlength') && editCorpFormGroup.get('corpName').errors?.required">
+              Поле обов'язкове
+            </mat-error>
+            <mat-error
+              i18n
+              *ngIf="editCorpFormGroup.controls['corpName'].hasError('maxlength')">
+              Перевищена максимальна довжина
+            </mat-error>
+          </mat-form-field>
+          <app-delete-input-value [inputValue]="editCorpFormGroup.controls.corpName"></app-delete-input-value>
+        </div>
+      </mat-card-content>
+        <button
+          class="btn-cancel"
+          i18n
+          mat-raised-button
+          type="button"
+          (click)="resetFormGroupHandler()">
+          Відмінити
+        </button>
+        <button
+          i18n
+          mat-raised-button
+          type="submit"
+          color="primary"
+          [disabled]="!editCorpFormGroup.valid">
+          Зберегти
+        </button>
+      </form>
+    </mat-card>
+  </div>
+</div>

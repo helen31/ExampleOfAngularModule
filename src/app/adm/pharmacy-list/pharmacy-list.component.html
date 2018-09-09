@@ -1,0 +1,120 @@
+<app-subheader-pharm></app-subheader-pharm>
+<app-toolbar-pharmacy></app-toolbar-pharmacy>
+<div class="table-container">
+  <!--<p class="table-container-elem"></p>-->
+  <mat-progress-bar mode="buffer" *ngIf="activeSpinner"></mat-progress-bar>
+  <div appCopyToClipboardDirective>
+    <table
+      mat-table
+      [dataSource]="pharmacies">
+      <ng-container matColumnDef="is_customers">
+        <th mat-header-cell class="cell-pharmacy-header" *matHeaderCellDef></th>
+        <td mat-cell class="cell-pharmacy" *matCellDef="let itemPh">
+          <button *ngIf="itemPh.is_customers" mat-icon-button type="button" (click)="showCustomersDetailHandler($event)">
+            <mat-icon class="icon-more" svgIcon="more"></mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="id_org">
+        <th
+          class="cell-pharmacy-header"
+          mat-header-cell
+          i18n
+          *matHeaderCellDef>
+          ID
+        </th>
+        <td mat-cell class="cell-pharmacy" *matCellDef="let itemPh">{{ itemPh.id_org }}</td>
+      </ng-container>
+      <ng-container matColumnDef="org_name">
+        <th
+          mat-header-cell
+          class="cell-pharmacy-header"
+          i18n
+          *matHeaderCellDef>
+          Назва Структури
+        </th>
+        <td mat-cell class="cell-pharmacy" *matCellDef="let itemPh">{{ itemPh.org_name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="id_morion">
+        <th
+          mat-header-cell
+          class="cell-pharmacy-header"
+          i18n
+          *matHeaderCellDef>
+          ID Моріон
+        </th>
+        <td mat-cell class="cell-pharmacy" *matCellDef="let itemPh">{{ itemPh.id_morion }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name_morion">
+        <th
+          mat-header-cell
+          class="cell-pharmacy-header"
+          i18n
+          *matHeaderCellDef>
+          Назва Моріон
+        </th>
+        <td mat-cell class="cell-pharmacy" *matCellDef="let itemPh">{{ itemPh.name_morion }}</td>
+      </ng-container>
+      <ng-container matColumnDef="ls_key">
+        <th
+          mat-header-cell
+          class="cell-pharmacy-header"
+          i18n
+          *matHeaderCellDef>
+          Ліцензійний ключ
+        </th>
+        <td mat-cell class="cell-pharmacy" *matCellDef="let itemPh">{{ itemPh.ls_key }}</td>
+      </ng-container>
+      <ng-container matColumnDef="access_key">
+        <th
+          mat-header-cell
+          class="cell-pharmacy-header"
+          i18n
+          *matHeaderCellDef>
+          Ключ доступу
+        </th>
+        <td mat-cell class="cell-pharmacy" *matCellDef="let itemPh">{{ itemPh.access_key }}</td>
+      </ng-container>
+      <ng-container matColumnDef="customers">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td
+          colspan="7"
+          mat-cell
+          *matCellDef="let item"
+          class="cell-customers">
+          <ul class="customers-list">
+            <li *ngFor="let customer of item.customers">
+            <span>
+            {{ customer.name }}
+            </span>
+              <span>
+             {{ customer.addr }}
+           </span>
+              <span>
+            {{ customer.id_local }}
+            </span>
+            </li>
+          </ul>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['is_customers','id_org', 'org_name', 'id_morion', 'name_morion', 'ls_key', 'access_key']"></tr>
+      <tr
+        id="{{ row.id_subject }}"
+        mat-row
+        *matRowDef="let row; columns: ['is_customers', 'id_org', 'org_name', 'id_morion', 'name_morion', 'ls_key', 'access_key']"
+        [class.active]="row.id_subject == selectedRow"
+        (click)="selectItemHandler(row)"
+        class="row-pharmacy">
+      </tr>
+      <tr
+        mat-row
+        id="{{ rowCustomer['customers'][0]['id_subject'] }}"
+        attr.data-id-parent="{{ rowCustomer['parent_id_subject'] }}"
+        (click)="selectCustomersHandler(rowCustomer)"
+        [class.active]="rowCustomer['customers'][0]['id_subject'] == selectedRow"
+        class="row-customers isShown"
+        *matRowDef="let rowCustomer; columns: ['customers']; when: isExtendedRow">
+      </tr>
+    </table>
+  </div>
+</div>

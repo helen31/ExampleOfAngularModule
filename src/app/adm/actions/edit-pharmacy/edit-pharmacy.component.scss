@@ -1,0 +1,68 @@
+@import '~sass/variables';
+
+.container{
+  padding-top: 80px;
+
+  .mat-card{
+    padding: 24px;
+  }
+  /**.mat-card-title{
+    margin: 0 0 34px 0;
+  }**/
+  .container-form{
+    padding-top: 8px;
+  }
+  .item-description{
+    font-size: 14px;
+    margin: 10px 0;
+  }
+  .link-edit{
+    color: $primary-color;
+    border-bottom: 1px solid $primary-color;
+  }
+  .link-edit:hover{
+    color: $link-edit-hover-color;
+    border-bottom: 1px solid $link-edit-hover-color;
+  }
+  .item-description span{
+    color: #636363;
+    padding-right: 8px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .mat-form-field{
+    width: 80%;
+  }
+  .mat-input-element{
+    font-size: 16px;
+  }
+  .btn-wrapper{
+    margin-top: 15px;
+  }
+  .btn-cancel{
+    margin-right: 10px;
+  }
+  .mat-form-field-container{
+    position: relative;
+  }
+  app-delete-input-value{
+    position: absolute;
+    top: 33%;
+    right: 20%;
+    cursor: pointer;
+  }
+  .ls-error{
+    color: $error-color;
+    font-size: 14px;
+    margin: 0;
+  }
+  /**Turn Off Number Input Spinners**/
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number] {
+    -moz-appearance:textfield;
+  }
+}

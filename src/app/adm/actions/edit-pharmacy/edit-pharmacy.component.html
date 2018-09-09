@@ -1,0 +1,132 @@
+<app-subheader-pharm></app-subheader-pharm>
+<div  fxLayoutAlign="center" class="container">
+  <div
+    class="container-edit"
+    fxLayout="column"
+    fxFlex="50%"
+    fxFlex.md="80%"
+    fxFlex.lt-md="100%">
+    <mat-card>
+      <mat-card-title i18n>Редагування організації</mat-card-title>
+      <mat-card-content>
+        <div
+          *ngIf="hiddenIdMorionInput"
+          class="item-description">
+          <span i18n>ID Моріон:</span>
+          {{ pharmacyMorionChangedData.id }}
+          <a
+            i18n
+            href="javascript:void(0);"
+            class="link-edit"
+            (click)="editIdHandler()">
+            редагувати
+          </a>
+        </div>
+        <div class="item-description">
+          <span i18n>Назва Моріон:</span>
+          {{ pharmacyMorionChangedData.name }}
+        </div>
+        <div class="item-description">
+          <span i18n>BrNick:</span>
+          {{ pharmacyMorionChangedData.br_nick }}
+        </div>
+        <div *ngIf="!hiddenIdMorionInput">
+          <form [formGroup]="editIdMorionFormGroup" (ngSubmit)="changeIdMorionHandler()">
+            <mat-spinner
+              *ngIf="activeSpinner"
+              color="accent"
+              diameter="60"
+              strokeWidth="7">
+            </mat-spinner>
+            <div class="mat-form-field-container" *ngIf="!activeSpinner">
+              <mat-form-field>
+                <input
+                  i18n-placeholder
+                  matInput
+                  placeholder="ID Моріон*"
+                  formControlName="idMorion" type="number">
+                <mat-error
+                  i18n
+                  *ngIf="editIdMorionFormGroup.controls.idMorion.touched && editIdMorionFormGroup.get('idMorion').errors?.required">
+                  Поле обов'язкове
+                </mat-error>
+              </mat-form-field>
+              <app-delete-input-value [inputValue]="editIdMorionFormGroup.controls.idMorion"></app-delete-input-value>
+            </div>
+            <p
+              i18n
+              *ngIf="isIdMorionError"
+              class="ls-error">
+              ID відсутній у базі!
+            </p>
+            <div class="btn-wrapper">
+              <button
+                class="btn-cancel"
+                i18n
+                mat-raised-button
+                type="button"
+                (click)="editIdHandler()">
+                Назад
+              </button>
+              <button
+                i18n
+                mat-raised-button
+                type="submit"
+                color="primary"
+                [disabled]="editIdMorionFormGroup.get('idMorion').errors?.required">
+                Знайти
+              </button>
+            </div>
+          </form>
+        </div>
+      </mat-card-content>
+      <mat-card-content>
+        <div *ngIf="hiddenIdMorionInput" class="container-form">
+          <mat-divider></mat-divider>
+          <div class="item-description"><span>ID:</span>{{ pharmacy.id_org }}</div>
+          <form [formGroup]="editPharmFormGroup" (ngSubmit)="editPrarmacyHandler()">
+            <div class="mat-form-field-container">
+              <mat-form-field>
+                <input
+                  i18n-placeholder
+                  matInput
+                  placeholder="Назва*"
+                  formControlName="pharmName"
+                  type="text">
+                <mat-error
+                  i18n
+                  *ngIf="!editPharmFormGroup.controls['pharmName'].hasError('maxlength') && editPharmFormGroup.get('pharmName').errors?.required">
+                  Поле обов'язкове
+                </mat-error>
+                <mat-error
+                  i18n
+                  *ngIf="editPharmFormGroup.controls['pharmName'].hasError('maxlength')">
+                  Перевищена максимальна довжина
+                </mat-error>
+              </mat-form-field>
+              <app-delete-input-value [inputValue]="editPharmFormGroup.controls.pharmName"></app-delete-input-value>
+            </div>
+            <div class="btn-wrapper">
+              <button
+                class="btn-cancel"
+                i18n
+                mat-raised-button
+                type="button"
+                (click)="resetFormGroupHandler()">
+                Відмінити
+              </button>
+              <button
+                i18n
+                mat-raised-button
+                type="submit"
+                color="primary"
+                [disabled]="!editPharmFormGroup.valid">
+                Зберегти
+              </button>
+            </div>
+          </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

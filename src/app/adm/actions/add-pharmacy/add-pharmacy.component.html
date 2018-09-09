@@ -1,0 +1,194 @@
+<app-subheader-pharm></app-subheader-pharm>
+<div  fxLayoutAlign="center" class="container">
+  <div class="container-stepper"
+       fxLayout="column"
+       fxFlex="50%"
+       fxFlex.md="80%"
+       fxFlex.lt-md="100%">
+    <mat-card>
+      <mat-card-title i18n>Створення структури</mat-card-title>
+      <mat-vertical-stepper linear><!--linear-->
+        <ng-template matStepperIcon="edit">
+          <mat-icon svgIcon="edit"></mat-icon>
+        </ng-template>
+        <mat-step [stepControl]="firstFormGroup"><!--editable="false"-->
+          <mat-spinner
+            *ngIf="activeSpinner"
+            color="accent"
+            diameter="60"
+            strokeWidth="7">
+          </mat-spinner>
+          <form
+            [formGroup]="firstFormGroup"
+            (ngSubmit)="getLisenceHandler()"
+            #firstFormGroupDirective="ngForm">
+            <ng-template
+              i18n
+              matStepLabel>
+              Дані Моріон
+            </ng-template>
+            <div *ngIf="!activeSpinner">
+              <div *ngIf="!isLicenseResponse">
+                <div class="container-lsKey">
+                  <mat-form-field>
+                    <input
+                      i18n-placeholder
+                      matInput
+                      placeholder="Ліцензійний ключ*"
+                      formControlName="licenseKey">
+                    <mat-error
+                      i18n
+                      *ngIf="!firstFormGroup.valid && !forbiddenLSKeyMessage">
+                      Поле обов'язкове
+                    </mat-error>
+                  </mat-form-field>
+                  <app-delete-input-value [inputValue]="firstFormGroup.controls.licenseKey" class="delete-input-lsKey"></app-delete-input-value>
+                </div>
+                <p
+                  i18n
+                  *ngIf="!lsKeyExist" class="ls-error">
+                  Ліцензійний ключ відсутній у базі!
+                </p>
+                <div *ngIf="!isHiddenInputField">
+                  <input matInput placeholder="" formControlName="isResponse" type="text">
+                </div>
+                <div class="button-wrapper">
+                  <button
+                    class="btn-cancel"
+                    i18n
+                    mat-raised-button
+                    type="button"
+                    (click)="resetFormsHandler()">
+                    Відмінити
+                  </button>
+                  <button
+                    i18n
+                    [disabled]="firstFormGroup.controls.licenseKey.invalid"
+                    mat-raised-button
+                    color="primary"
+                    class="button-find"
+                    type="submit">
+                    Знайти
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isLicenseResponse">
+              <div class="item-description">
+                <span i18n>Ліцензійний ключ:</span>{{ lsKey }}
+                <a
+                  i18n
+                  href="javascript:void(0);"
+                  class="link-edit"
+                  (click)="editLsKeyHandler()">
+                  редагувати
+                </a>
+              </div>
+              <div class="item-description">
+                <span i18n>ID Моріон:</span>{{ corporationMorion.corp_id }}
+              </div>
+              <div class="item-description">
+                <span i18n>Нава Моріон:</span>{{ corporationMorion.corp_name }}
+              </div>
+              <div class="item-description">
+                <span i18n>BrNick:</span>{{ corporationMorion.br_nick }}
+              </div>
+              <div class="button-wrapper-second">
+                <button
+                  class="btn-cancel"
+                  i18n
+                  mat-raised-button
+                  type="button"
+                  (click)="resetFormsHandler()">
+                  Відмінити
+                </button>
+                <button
+                  i18n
+                  mat-raised-button
+                  color="primary"
+                  matStepperNext
+                  type="button"
+                  [disabled]="firstFormGroup.invalid && !isLicenseResponse"
+                  class="button-next">
+                  Далі
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form
+            [formGroup]="secondFormGroup"
+            (ngSubmit)="setPharmacyHandler()"
+            #secondFormGroupDirective="ngForm">
+            <ng-template
+              i18n matStepLabel>
+              Дані організації
+            </ng-template>
+            <div class="item-description">
+              <span i18n>ID:</span>{{ corporationMorion.org_id }}
+            </div>
+            <mat-form-field class="mat-form-field-width">
+              <input
+                i18n-placeholder
+                matInput
+                placeholder="Назва*"
+                formControlName="pharmacyName">
+              <mat-error
+                i18n
+                *ngIf="secondFormGroup.controls.pharmacyName.touched || secondFormGroup.controls.pharmacyName.invalid">
+                Поле обов'язкове
+              </mat-error>
+            </mat-form-field>
+            <app-delete-input-value [inputValue]="secondFormGroup.controls.pharmacyName"></app-delete-input-value>
+            <div *ngIf="!accessKey">
+              <span i18n>Згенерувати ключ доступу</span>
+              <button
+                type="button"
+                class="toolbar-item"
+                (click)="generateAccessKeyHandler()">
+                <mat-icon  class="svg-icon" svgIcon="settings"></mat-icon>
+              </button>
+            </div>
+              <input class="input-accessKey" formControlName="accessKey">
+              <button
+                *ngIf="accessKey"
+                mat-icon-button
+                type="button"
+                ngxClipboard
+                cbContent="{{ accessKey }}"
+                i18n-matTooltip
+                matTooltip="скопіювати">
+                <mat-icon class="svg-icon" svgIcon="clipboards"></mat-icon>
+              </button>
+            <div class="button-wrapper">
+              <button
+                class="btn-cancel"
+                i18n
+                mat-raised-button
+                type="button"
+                (click)="resetFormsHandler()">
+                Відмінити
+              </button>
+              <button
+                i18n
+                mat-raised-button
+                matStepperPrevious
+                class="btn-cancel button-prev" type="button">
+                Назад
+              </button>
+              <button
+                i18n
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="!secondFormGroup.valid">
+                Створити
+              </button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-vertical-stepper>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<app-subheader-corp></app-subheader-corp>
+<app-toolbar-corp></app-toolbar-corp>
+<div class="table-container">
+  <mat-progress-bar mode="buffer" *ngIf="activeSpinner"></mat-progress-bar>
+  <div appCopyToClipboardDirective>
+    <table mat-table
+      [dataSource]="corpsDataSource"
+      matSort>
+      <ng-container matColumnDef="{{ columnCaptions[0] }}">
+        <th
+          mat-header-cell
+          i18n
+          *matHeaderCellDef
+          mat-sort-header="id_corp">
+          ID
+        </th>
+        <td mat-cell *matCellDef="let corporation">{{ corporation.id_corp }}</td>
+      </ng-container>
+      <ng-container matColumnDef="{{ columnCaptions[1] }}">
+        <th
+          mat-header-cell
+          i18n
+          *matHeaderCellDef
+          mat-sort-header="corp_name">
+          Назва Корпорації
+        </th>
+        <td mat-cell *matCellDef="let corporation">{{ corporation.corp_name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="{{ columnCaptions[2] }}">
+        <th
+          mat-header-cell
+          i18n
+          *matHeaderCellDef
+          mat-sort-header="morion_name">
+          ID Моріон
+        </th>
+        <td mat-cell *matCellDef="let corporation">{{ corporation.id_morion }}</td>
+      </ng-container>
+      <ng-container matColumnDef="{{ columnCaptions[3] }}">
+        <th
+          mat-header-cell
+          i18n
+          *matHeaderCellDef
+          mat-sort-header="id_morion">
+          Назва Моріон
+        </th>
+        <td mat-cell *matCellDef="let corporation">{{ corporation.morion_name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="{{ columnCaptions[4] }}">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <button
+            class="icon-button"
+            mat-icon-button
+            (click)="selectItemHandler(row)"
+            type="button" [routerLink]="['/adm/corporations', row.id_corp, 'pharmacies']">
+            <mat-icon svgIcon="list" class="icon-list"></mat-icon>
+            <span i18n class="icon-description">Структура</span>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnCaptions"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnCaptions"
+        (click)="selectItemHandler(row)"
+        [class.active]="row.id_corp == selectedRow"
+        id="{{ row.id_corp }}">
+      </tr>
+    </table>
+  </div>
+</div>
+<button
+  mat-mini-fab
+  class="button-top"
+  type="button"
+  matTooltip="Наверх"
+  (click)="scrollToTopHandler()">
+  <mat-icon svgIcon="arrow-up"></mat-icon>
+</button>

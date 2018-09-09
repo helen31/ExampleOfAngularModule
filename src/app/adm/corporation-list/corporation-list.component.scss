@@ -1,0 +1,59 @@
+@import '~sass/variables';
+
+.mat-table{
+  padding-top: 117.2px;
+  width: 100%;
+}
+.mat-header-cell{
+  position: sticky;
+  top: 117px;
+  background-color: #fff;
+  position: -webkit-sticky; /* Safari */
+  z-index: 2;
+}
+.button-top{
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+}
+.mat-row:nth-child(even){
+  background-color: $table-row-color;
+}
+.mat-row:hover{
+  background-color: $primary-color-opacity;
+  cursor: pointer;
+}
+.active{
+  background-color: $primary-color-opacity!important;
+  box-shadow: 0 0 0 1px $secondary-color inset;
+}
+.mat-header-cell {
+  font-weight: bold;
+}
+.icon-list{
+  color: $adm-icons;;
+}
+.icon-list:hover{
+  color: $adm-icons-hover;
+}
+.icon-description{
+  position: relative;
+  font-size: 11px;
+  color: #fff;
+  padding: 6px 7px;
+  background-color: #646464;
+  border-radius: 2px;
+  opacity: 0.95;
+  right: 125%;
+  bottom: -40px;
+  visibility: hidden;
+  z-index: 2;
+}
+.icon-button:hover .icon-description{
+  visibility:visible;
+}
+/**SPINNER**/
+.mat-progress-bar{
+  position: fixed;
+  top: 176px;
+}

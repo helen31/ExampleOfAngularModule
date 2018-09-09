@@ -1,0 +1,80 @@
+@import '~sass/variables';
+
+.container{
+  padding-top: 80px;
+}
+.mat-card-title{
+  margin: 0 22px 10px 22px;
+}
+mat-vertical-stepper{
+  background: inherit;
+}
+.mat-form-field{
+  min-width: 50%;
+}
+.mat-form-field-width{
+  width: 70%;
+}
+.button-wrapper button{
+  display: inline-block;
+}
+.form-second{
+  position: relative;
+}
+.wrapper{
+  position: relative;
+}
+app-delete-input-value{
+  position: absolute;
+  top: 37%;
+  right: 30%;
+  cursor: pointer;
+}
+.item-description{
+  font-size: 14px;
+  margin: 10px 0;
+}
+.item-description span{
+  color: $item-description-color;
+  padding-right: 8px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.button-wrapper, .button-find{
+  margin-top: 8px;
+}
+.btn-cancel{
+  margin-right: 10px;
+}
+.button-find{
+  display: block;
+}
+.link-edit{
+  color: $primary-color;
+  border-bottom: 1px solid $primary-color;
+}
+.link-edit:hover{
+  color: $link-edit-hover-color;
+  border-bottom: 1px solid $link-edit-hover-color;
+}
+.button-next{
+  margin-top: 15px;
+}
+::ng-deep .mat-step-header .mat-step-icon,
+::ng-deep .mat-step-header .mat-step-icon-not-touched{
+  color: $step-color;
+}
+.ls-error{
+  color: $error-color;
+  font-size: 14px;
+  margin: 0;
+}
+/**Turn Off Number Input Spinners**/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance:textfield;
+}

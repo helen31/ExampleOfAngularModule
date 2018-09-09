@@ -1,0 +1,26 @@
+<div  fxLayoutAlign="center" class="container">
+  <div
+    fxLayout="column"
+    fxFlex="60%"
+    fxFlex.md="80%"
+    fxFlex.lt-md="100%">
+    <mat-card>
+      <mat-card-title i18n>Налаштування розрахунку потреби</mat-card-title>
+      <form
+        class="dynamic-form"
+        [formGroup]="form"
+        (ngSubmit)="submitDynamicFormHandler()">
+        <ng-container
+          *ngFor="let field of config;"
+          addDynamicFieldDirective
+          [config]="field"
+          [group]="form">
+        </ng-container>
+        <div class="form-row">
+          <button class="btn-cancel" i18n mat-raised-button type="button" (click)="cancelHandler()">Відмінити</button>
+          <button i18n mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Зберегти</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

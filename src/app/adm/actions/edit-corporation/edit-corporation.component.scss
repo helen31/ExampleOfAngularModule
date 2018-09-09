@@ -1,0 +1,43 @@
+@import '~sass/variables';
+
+.container{
+  padding-top: 80px;
+
+  .mat-card{
+    padding: 24px;
+  }
+  .mat-card-title{
+    margin: 0 0 34px 0;
+  }
+  .description{
+    margin-bottom: 19px;
+  }
+  .item-description{
+    font-size: 14px;
+    margin: 10px 0;
+  }
+  .item-description span{
+    color: #636363;
+    padding-right: 8px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .mat-form-field{
+    width: 80%;
+  }
+  .mat-input-element{
+    font-size: 16px;
+  }
+  .btn-cancel {
+    margin-right: 10px;
+  }
+  .mat-form-field-container{
+    position: relative;
+  }
+  app-delete-input-value{
+    position: absolute;
+    top: 25%;
+    right: 20%;
+    cursor: pointer;
+  }
+}

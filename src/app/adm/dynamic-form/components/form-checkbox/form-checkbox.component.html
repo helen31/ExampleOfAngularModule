@@ -1,0 +1,9 @@
+<div class="checkbox-wrapper">
+  <mat-checkbox
+    #myEntityCheckbox
+    (click)="$event.stopPropagation()"
+    [checked]="config.value === 'true'"
+    (change)="changeEntityAccessHandler()">
+    {{ config.name_uk }}
+  </mat-checkbox>
+</div>

@@ -1,0 +1,18 @@
+<div>
+  <mat-form-field
+    fxLayout="column"
+    fxFlex.xs="90%"
+    fxFlex.sm="60%"
+    fxFlex.gt-sm="35%"
+    [formGroup]="group">
+    <input
+      matInput
+      [type]="config.option_type"
+      [placeholder]="config.name_uk"
+      [formControlName]="config.code"/>
+      <mat-error
+        *ngIf="!group.valid">
+        Поле обов'язкове
+      </mat-error>
+  </mat-form-field>
+</div>

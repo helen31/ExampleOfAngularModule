@@ -1,0 +1,27 @@
+<div i18n mat-dialog-title>Видалити корпорацію</div>
+<mat-dialog-content>
+  <div class="item-description">
+    <span i18n>ID:</span>{{ corporation.id_corp }}
+  </div>
+  <div class="item-description">
+    <span i18n>Назва:</span>{{ corporation.corp_name }}
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    class="btn-cancel"
+    i18n
+    mat-raised-button
+    mat-dialog-close
+    type="button">
+    Відмінити
+  </button>
+  <button
+    i18n
+    mat-raised-button
+    class="btn-delete"
+    type="button"
+    (click)="deleteCorporationHandler()">
+    Видалити
+  </button>
+</mat-dialog-actions>
